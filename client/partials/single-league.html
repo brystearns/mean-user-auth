@@ -1,0 +1,17 @@
+<div class="container" ng-controller="AdminCtrl as Admin">
+
+	<div class="row col-md-12">
+		<h1>{{Admin.leagues.currentLeague.name}}</h1>
+	</div>
+
+
+	<div class="row col-md-12">
+
+		<div ng-hide="Admin.leagues.currentLeague.boxes.length">
+			<h2>You don't have any draft boxes created. <a href="/#/league/{{Admin.leagues.currentLeague._id}}/create-box">Create One!</a></h2>
+		</div>
+
+
+	</div>
+
+</div>

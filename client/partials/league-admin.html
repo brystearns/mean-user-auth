@@ -1,0 +1,30 @@
+<div class="container" ng-controller="AdminCtrl as Admin">
+
+	<div ng-show="Admin.leagues.message" class="row col-md-12">
+		<h1>{{Admin.leagues.message}}</h1>
+	</div>
+
+
+	<div class="row col-md-12">
+
+		<div>
+			<h2>Time to Create Your First League</h2>
+
+			<input type="text" class="form-control input-lg" placeholder="Choose Your League Name" ng-model="leagueName" />
+			<button ng-click="Admin.createLeague(leagueName)" class="btn btn-primary" type="button">Create your league!</button>
+		</div>
+
+		<div ng-show="Admin.leagues.createdLeagues.length">
+			<h2>Choose a League to Manage:</h2>
+
+			<div class="col-md-4" ng-repeat="league in Admin.leagues.createdLeagues">
+				<h3><a href="/#/league/{{league._id}}">{{league.name}}</a></h3>
+				<h4>Members: {{league.members.length}}</h4>
+				<h4>Admin: {{league.admin_name}}</h4>
+			</div>
+		</div>
+
+
+	</div>
+
+</div>

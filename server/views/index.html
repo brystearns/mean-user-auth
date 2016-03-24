@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="hockeyApp">
+<head>
+	<title>MEAN Hockey Pool App</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body ng-controller="MainCtrl as mainCtrl">
+	<nav class="navbar navbar-default pull-right" ng-controller="NavCtrl as navCtrl">
+		<ul class="nav navbar-nav">
+			<li ng-show="navCtrl.isAdmin()"><a href="/#/league-admin">Manage League</a></li>
+			<li ng-show="navCtrl.isLoggedIn()"><a>{{navCtrl.currentUser().username}}</a></li>
+			<li ng-show="navCtrl.isLoggedIn()"><a href="" ng-click="navCtrl.logOut()">Log Out</a></li>
+			<li ng-hide="navCtrl.isLoggedIn()"><a href="/#/login">Log In</a></li>
+			<li ng-hide="navCtrl.isLoggedIn()"><a href="/#/register">Register</a></li>
+		</ul>
+	</nav>
+
+	<div class="container">
+		<h1><a href="/#/home">{{mainCtrl.title}}</a></h1>
+		<hr>
+
+		<ui-view></ui-view>
+	</div>
+
+
+
+
+
+	<script src="js/bundle.js" async></script>
+</body>
+</html>

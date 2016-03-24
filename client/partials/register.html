@@ -1,0 +1,41 @@
+<div class="page-header">
+	<h1>Todo App - Register</h1>
+</div>
+
+<div ng-show="authCtrl.error" class="alert alert-danger row">
+	<span>{{authCtrl.error.message}}</span>
+</div>
+
+<form ng-submit="authCtrl.register()" style="margin-top:30px;">
+	<h3>Register</h3>
+
+	<div class="form-group">
+		<input type="text" class="form-control input-lg" placeholder="Username" ng-model="authCtrl.user.username"></input>
+	</div>
+
+	<div class="form-group">
+		<input type="email" class="form-control input-lg" placeholder="Email" ng-model="authCtrl.user.email"></input>
+	</div>
+
+	<div class="form-group">
+		<input type="password" class="form-control input-lg" placeholder="Password" ng-model="authCtrl.user.password" ng-keyup="authCtrl.checkVal()"></input>
+		<div class="alert alert-warning">Password Strength: {{authCtrl.score}}</div>
+	</div>
+
+	<div class="form-group">
+		<h3>User Permissions:</h3>
+		<div class="col-md-4">
+			<h4><input type="radio" name="permissions" value="admin" ng-model="permissions"> - Admin</h4>
+			<h4><input type="radio" name="permissions" value="member" ng-model="permissions"> - Team Manager</h4>
+		</div>
+
+		<div class="col-md-8" ng-show="permissions == 'admin'">
+			<h4>Enter the Admin password:</h4>
+			<input type="password" class="form-control input-lg" placeholder="Admin Password" ng-model="authCtrl.user.adminPassword"></input>
+		</div>
+	</div>
+
+	<div class="col-md-12" style="margin-top:20px;">
+		<button type="submit" class="btn btn-primary">Register</button>
+	</div>
+</form>

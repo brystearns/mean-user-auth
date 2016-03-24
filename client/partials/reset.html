@@ -1,0 +1,18 @@
+<div class="page-header">
+	<h1>{{mainCtrl.title}} - Reset Password</h1>
+</div>
+
+<div ng-show="authCtrl.error" class="alert alert-danger row">
+	<span>{{authCtrl.error.message}}</span>
+</div>
+
+<form ng-submit="authCtrl.reset()" style="margin-top:30px;">
+	<h3>Enter your new password</h3>
+
+	<div class="form-group">
+		<input type="password" class="form-control" placeholder="Password" ng-model="authCtrl.user.password" ng-keyup="authCtrl.checkVal()"></input>
+		<div>{{authCtrl.score}}</div>
+	</div>
+
+	<button type="submit" class="btn btn-primary">Reset Password</button>
+</form>

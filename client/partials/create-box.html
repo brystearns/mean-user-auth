@@ -1,0 +1,89 @@
+<div class="container" ng-controller="AdminCtrl as Admin">
+
+	<div class="row">
+		<div class="col-md-4">
+			<h1>{{Admin.leagues.currentLeague.name}}</h1>
+			<h2>Create Your Draft Box</h2>
+		</div>
+
+		<div class="col-md-8">
+			<input class="form-control" type="text" ng-model="Admin.newBox.name"/>
+		</div>
+	</div>
+
+
+
+	<div class="row">
+
+		<div class="col-md-4">
+			<input class="form-control" type="text" ng-model="nameFilter.full_name"/>
+
+			<select class="form-control" ng-model="positionFilter.position">
+			  <option value="">Position</option>
+			  <option value="">Forward</option>
+			  <option value="Center">Center</option>
+			  <option value="Left Wing">Left Wing</option>
+			  <option value="Right Wing">Right Wing</option>
+			  <option value="Defense">Defense</option>
+			  <option value="Goaltender">Goaltender</option>
+			</select>
+
+			<select class="form-control" ng-model="teamFilter.team.abbreviation">
+			  <option value="">League</option>
+			  <option ng-repeat="team in Admin.teams.teams | orderBy: 'full_name'" value="{{team.abbreviation}}">{{team.full_name}}</option>
+			</select>
+
+
+
+			<!-- List of all players and the filter -->
+
+			<div class="player-container">
+
+				<div class="row player" ng-repeat="player in Admin.players.players | filter : nameFilter | filter : positionFilter | filter : teamFilter | orderBy: 'last_name'" ng-click="Admin.addToBox(player)">
+					<div class="col-md-4">
+						<div class="headshot">
+							<img src="{{player.headshots.small}}" />
+						</div>
+					</div>
+
+					<div class="col-md-8">
+						<h4>{{player.full_name}}</h4>
+						<p>{{player.position}}</p>
+						<p>{{player.team.full_name}}</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+
+		<!-- Players added to the box -->
+
+		<div class="col-md-8">
+			<div class="row">
+
+				<div class="col-md-12" ng-show="Admin.msgShow" ng-class="Admin.msgType">
+					<h2>{{Admin.msg}}</h2>
+				</div>
+
+				<div class="col-md-4" ng-repeat="player in Admin.newBox.players">
+					<img src="{{player.headshots.large}}" />
+					<h4>{{player.full_name}}</h4>
+					<p>{{player.position}}</p>
+					<p>{{player.team.full_name}}</p>
+					<button type="button" class="btn btn-danger btn-xs" ng-click="Admin.removeFromBox(player)">Remove Player</button>
+				</div>
+
+			</div>
+
+			<div class="row submit-box">
+				<div class="col-md-12" ng-show="Admin.newBox.players.length">
+					<button type="button" class="btn btn-success btn-lg pull-right" ng-click="Admin.saveBox()">Save Box</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
